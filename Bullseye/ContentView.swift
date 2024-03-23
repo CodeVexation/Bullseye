@@ -16,7 +16,7 @@ struct ContentView: View {
                 .lineSpacing(4.0)
                 .font(.footnote)
                 .kerning(2.0)
-            Text("89")
+            Text("90")
             HStack {
                 Text("1")
                 Slider(value: .constant(89), in: 1.0...100.0)
