@@ -11,6 +11,7 @@ struct ContentView: View {
     
     @State private var alertIsVisible: Bool = false
     
+    @State private var sliderValue: Double = 50.0
     
     var body: some View {
         VStack {
@@ -28,26 +29,27 @@ struct ContentView: View {
             HStack {
                 Text("1")
                     .bold()
-                Slider(value: .constant(89), in: 1.0...100.0)
+                Slider(value:self.$sliderValue, in: 1.0...100.0)
                 Text("100")
                     .bold()
             }
             Button(action: {
-              print("Hello, SwiftUI!")
+                print("Hello, SwiftUI!")
                 self.alertIsVisible = true
             }) {
-              Text("Hit me")
+                Text("Hit me")
             }
-            alert.(isPresented: $alertIsVisible, content: {
-                return Alert(title: Text("Hello There"), message: Text("This is my first pop up"), dismissButton: .default("Awesome!"))
-            })
-                    
-                }
+            .alert(isPresented: $alertIsVisible) {
+                Alert(title: Text("Hello There"), message: Text("This is my first pop up"), dismissButton: .default(Text("Awesome!")))
             }
         }
-
-
-#Preview {
-    ContentView()
+    }
 }
 
+#if DEBUG
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
+#endif
